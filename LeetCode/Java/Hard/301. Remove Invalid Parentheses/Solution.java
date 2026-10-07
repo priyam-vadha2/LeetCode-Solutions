@@ -22,6 +22,10 @@ class Solution {
             {
                 ss=s.substring(i+1);
             }
+            else if(i==((s.length())-1))
+            {
+                ss=s.substring(i);
+            }
             else
             {
                 ss=s.substring(0,i)+s.substring(i+1);
@@ -30,13 +34,6 @@ class Solution {
             {
                 res.add(ss);
             }
-            /**else
-            {
-                if(res.isEmpty())
-                {
-                    remove(ss,res);
-                }
-            }**/
         }
         
     }
@@ -63,16 +60,11 @@ class Solution {
             }
             else
             {
-                c=1;
+                c++;
                 continue;
             }
         }
-        if(st.isEmpty() && c==1)
-        {
-            return true;
-        }
-        else{ 
         return st.isEmpty();
-        }
+
     }
 }
