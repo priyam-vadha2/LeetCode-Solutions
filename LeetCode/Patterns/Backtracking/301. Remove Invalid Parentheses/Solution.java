@@ -5,10 +5,19 @@ class Solution {
         if(valid(s))
         {
             res.add(s);
+            return res;
         }
-        else{ 
+        remove(s,res);
+        if(res.isEmpty())
+        {
+            res.add("");
+        }
+        return res;
+    }
+    public static void remove(String s,List<String> res){ 
         for(int i=0;i<s.length();i++)
         {
+            String ss;
             if(i==0)
             {
                 ss=s.substring(i+1);
@@ -21,13 +30,15 @@ class Solution {
             {
                 res.add(ss);
             }
+            /**else
+            {
+                if(res.isEmpty())
+                {
+                    remove(ss,res);
+                }
+            }**/
         }
-        if(res.isEmpty())
-        {
-            res.add("");
-        }
-        }
-        return res;
+        
     }
      public static boolean valid(String s){    
         Stack<Character> st=new Stack<>();
