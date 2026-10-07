@@ -24,7 +24,7 @@ class Solution {
             }
             else if(i==((s.length())-1))
             {
-                ss=s.substring(i);
+                ss=s.substring(0,i);
             }
             else
             {
