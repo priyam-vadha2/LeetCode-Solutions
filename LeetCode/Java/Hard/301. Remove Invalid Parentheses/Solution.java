@@ -2,7 +2,7 @@ class Solution {
     public List<String> removeInvalidParentheses(String s) {
         List<String> res=new ArrayList<>();
         String ss="";
-        if(s.length()==1)
+        if(s.length()==1 )
         {
             res.add(s);
         }
