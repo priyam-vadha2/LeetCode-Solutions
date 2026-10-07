@@ -27,6 +27,7 @@ class Solution {
      public static boolean valid(String s){    
         Stack<Character> st=new Stack<>();
         int j=0;
+        int c=0;
         for(int i=0;i<s.length();i++)
         {
             if(s.charAt(i)=='(')
@@ -49,11 +50,18 @@ class Solution {
             else
             {
                 //ch[j++]=s.charAt(i);
+                c=1;
                 continue;
             }
         }
         //String valid=new String(ch,0,j);
         //res.add(valid);
+        if(st.isEmpty() && c==1)
+        {
+            return true;
+        }
+        else{ 
         return st.isEmpty();
+        }
     }
 }
