@@ -29,7 +29,6 @@ class Solution {
         }
         return res;
     }
-        //char []ch=new char[s.length()];
      public static boolean valid(String s){    
         Stack<Character> st=new Stack<>();
         int j=0;
@@ -39,14 +38,12 @@ class Solution {
             if(s.charAt(i)=='(')
             {
                 st.push(s.charAt(i));
-                //ch[j++]=s.charAt(i);
             }
             else if(s.charAt(i)==')')
             {
                 if(!st.isEmpty() && st.peek()=='(')
                 {
                     st.pop();
-                    //ch[j++]=s.charAt(i);
                 }
                 else
                 {
@@ -55,13 +52,10 @@ class Solution {
             }
             else
             {
-                //ch[j++]=s.charAt(i);
                 c=1;
                 continue;
             }
         }
-        //String valid=new String(ch,0,j);
-        //res.add(valid);
         if(st.isEmpty() && c==1)
         {
             return true;
