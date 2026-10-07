@@ -1,72 +1,53 @@
 class Solution {
-    int min=Integer.MAX_VALUE;
-    List<String> res=new ArrayList<>();
     public List<String> removeInvalidParentheses(String s) {
-        String ss="";
-        if(valid(s))
-        {
-            res.add(s);
-            return res;
+        List<String> res = new ArrayList<>();
+        Queue<String> q = new LinkedList<>();
+        Set<String> seen = new HashSet<>();
+
+        q.add(s);
+        seen.add(s);
+
+        while (!q.isEmpty()) {
+            int n = q.size();
+            boolean found = false;
+
+            while (n-- > 0) {
+                String x = q.poll();
+
+                if (valid(x)) {
+                    res.add(x);
+                    found = true;
+                }
+
+                if (found) continue;
+
+                for (int i = 0; i < x.length(); i++) {
+                    if (x.charAt(i) != '(' && x.charAt(i) != ')') continue;
+
+                    String y = x.substring(0, i) + x.substring(i + 1);
+
+                    if (seen.add(y))
+                        q.add(y);
+                }
+            }
+
+            if (found) break;
         }
-        remove(s,0);
-        if(res.isEmpty())
-        {
-            res.add("");
-        }
+
         return res;
     }
-    public void remove(String s, int removed) {
 
-        if (removed > min) {
-            return;
-        }
+    public boolean valid(String s) {
+        int b = 0;
 
-        for (int i = 0; i < s.length(); i++) {
-
-            String ss = s.substring(0, i) + s.substring(i + 1);
-
-            if (valid(ss)) {
-                if (removed + 1 < min) {
-                    min = removed + 1;
-                    res.clear();
-                }
-                if (removed + 1 == min && !res.contains(ss)) {
-                    res.add(ss);
-                }
-
-            } else {
-                remove(ss, removed + 1);
+        for (char c : s.toCharArray()) {
+            if (c == '(') b++;
+            else if (c == ')') {
+                if (b == 0) return false;
+                b--;
             }
         }
-    }
-     public static boolean valid(String s){    
-        Stack<Character> st=new Stack<>();
-        int j=0;
-        int c=0;
-        for(int i=0;i<s.length();i++)
-        {
-            if(s.charAt(i)=='(')
-            {
-                st.push(s.charAt(i));
-            }
-            else if(s.charAt(i)==')')
-            {
-                if(!st.isEmpty() && st.peek()=='(')
-                {
-                    st.pop();
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                c++;
-                continue;
-            }
-        }
-        return st.isEmpty();
 
+        return b == 0;
     }
 }
